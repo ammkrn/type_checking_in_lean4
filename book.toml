@@ -1,0 +1,12 @@
+[book]
+title = "Type Checking in Lean 4"
+authors = ["Christopher A. Bailey", "contributions from the Lean community"]
+language = "en"
+multilingual = false
+src = "src"
+
+[build]
+build-dir = "out"
+
+[output.html]
+git-repository-url = "https://github.com/ammkrn/type_checking_in_lean4"

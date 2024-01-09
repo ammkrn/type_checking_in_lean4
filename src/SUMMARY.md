@@ -1,0 +1,29 @@
+# Type Checking in Lean 4
+
+## Foreword
+
+
+[Type Checking in Lean 4](title_page.md)
+[Foreword](foreword.md)
+
+- [What's a kernel?](./whats_a_kernel.md)
+- [Trust](./trust/trust.md)
+    - [Unsafe declarations](./trust/unsafe_declarations.md)
+    - [Adversarial inputs](./trust/adversarial_inputs.md)
+- [Export format](./export_format.md)
+- [Kernel concepts](./kernel_concepts/kernel_concepts.md)
+    - [The big picture](./kernel_concepts/the_big_picture.md)
+    - [Clarifying language](./kernel_concepts/clarifying_language.md)
+    - [Instantiation and abstraction](./kernel_concepts/instantiation_and_abstraction.md)
+    - [Weak and strong reduction](./kernel_concepts/weak_and_strong_reduction.md)
+- [Names](./names.md)
+- [Levels](./levels.md)
+- [Expressions](./expressions/expressions.md)
+    - [Notes on Implementing Expressions](./expressions/implementing_expressions.md)
+- [Declarations](./declarations/declarations.md)
+    - [The Secret Life of Inductive Types](./declarations/inductive.md)
+- [Type Inference](./type_checking/type_inference.md)
+- [Definitional Equality](./type_checking/definitional_equality.md)
+- [Reduction](./type_checking/reduction.md)
+- [Open issues & future work](./future_work.md)
+- [Further reading](./further_reading.md)
