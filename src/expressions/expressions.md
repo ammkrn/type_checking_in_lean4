@@ -144,16 +144,15 @@ The `proj` constructor represents structure projections. Inductive types that ar
 
 The constructor takes a name, which is the name of the type, a natural number indicating the field being projected, and the actual structure the projection is being applied to.
 
-Be aware that in the kernel, projection indices are 0-based, despite being 1-based in Lean's vernacular.
+Be aware that in the kernel, projection indices are 0-based, despite being 1-based in Lean's vernacular, where 0 is the first non-parameter argument to the constructor.
 
-For example, the kernel expression `proj Prod 0 (Prod.mk a b)` would project the `a`.
+For example, the kernel expression `proj Prod 0 (@Prod.mk A B a b)` would project the `a`, because it is the 0th field after skipping the parameters `A` and `B`.
 
 While the behavior offered by `proj` can be accomplished by using the type's recursor, `proj` more efficiently handles frequent kernel operations.
 
-
 ### Literals
 
-Lean's kernel supports arbitrary precision Nat and String literals. As needed, the kernel can transform a nat literal `n` to `Nat.zero` or `Nat.succ m`, or convert a string literal `s` to `String.mk List.nil` or `String.mk (List.cons (Char.ofNat _) ...)`.
+Lean's kernel optionally supports arbitrary precision Nat and String literals. As needed, the kernel can transform a nat literal `n` to `Nat.zero` or `Nat.succ m`, or convert a string literal `s` to `String.mk List.nil` or `String.mk (List.cons (Char.ofNat _) ...)`.
 
 String literals are lazily converted to lists of characters for testing definitional equality, and when they appear as the major premise in reduction of a recursor.
 

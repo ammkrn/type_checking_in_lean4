@@ -30,7 +30,7 @@ defEq (Const n xs) (Const m ys):
 
 ## Bound Variables
 
-For implementations using a substitution-based strategy like locally nameless (if you're following the C++ or lean4lean implementations, this is you), encountering a bound variable is an error; bound variables should have been replaced during weak reduction if they referred to an argument, or they should have been replaced with a free variable as part of a definitional equality check for a pi or lambda expression.
+For implementations using a substitution-based strategy like locally nameless (if you're following the C++ or lean4lean implementations, this is you), encountering a bound variable is an error; bound variables should have been replaced during weak reduction if they referred to an argument, or they should have been replaced with a free variable via strong reduction as part of a definitional equality check for a pi or lambda expression.
 
 For closure-based implementations, look up the elements corresponding to the bound variables and assert that they are definitionally equal.
 

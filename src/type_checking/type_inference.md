@@ -2,7 +2,7 @@
 
 Type inference is a procedure for determining the type of a given expression, and is one of the core functionalities of Lean's kernel. Type inference is how we determine that `Nat.zero` is an element of the type `Nat`, or that `(fun (x : Char) => var(0))` is an element of the type `Char -> Char`.
 
-This begins by examining the simplest complete procedure for for type inference, then the more performant but slightly more complex version of each procedure.
+This section begins by examining the simplest complete procedure for type inference, then the more performant but slightly more complex version of each procedure.
 
 We will also look at a number of additional correctness assertions that Lean's kernel makes during type inference.
 

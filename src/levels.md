@@ -12,11 +12,11 @@ Properties of the `Level` type that readers should take note of are the existenc
 
 `Max` simply constructs a universe level that represents the larger of the left and right arguments. For example, `Max(1, 2)` simplifies to `2`, and `Max(u, u+1)` simplifies to `u+1`. The `IMax` constructor represents the larger of the left and right arguments, *unless* the right argument simplifies to `Zero`, in which case the entire `IMax` resolves to `0`.
 
-The important part about `IMax` is its interaction with the type inference procedure to ensure that, for example, `forall (x y : Sort 3), Nat` is inferred as `Sort 3`, but `forall (x y : Sort 3), True` is inferred as `Prop`.
+The important part about `IMax` is its interaction with the type inference procedure to ensure that, for example, `forall (x y : Sort 3), Nat` is inferred as `Sort 4`, but `forall (x y : Sort 3), True` is inferred as `Prop`.
 
 ## Partial order on levels
 
-Lean's `Level` type is equipped with a partial order. The rather nice implementation below comes from Gabriel Ebner's Lean 3 checker [trepplein](https://github.com/gebner/trepplein/tree/master). While there are quite a few cases that need to be covered, the only complex matches are those relying on `cases`, which checks whether `x ≤ y` by examining whether `x ≤ y` holds when a parameter `p` is substituted for `Zero`, and when `p` is substituted for `Succ p`.
+Lean's `Level` type is equipped with a partial order, meaning there's a "less than or equals" test we can perform on pairs of levels. The rather nice implementation below comes from Gabriel Ebner's Lean 3 checker [trepplein](https://github.com/gebner/trepplein/tree/master). While there are quite a few cases that need to be covered, the only complex matches are those relying on `cases`, which checks whether `x ≤ y` by examining whether `x ≤ y` holds when a parameter `p` is substituted for `Zero`, and when `p` is substituted for `Succ p`.
 
 ```
   leq (x y : Level) (balance : Integer): bool :=
