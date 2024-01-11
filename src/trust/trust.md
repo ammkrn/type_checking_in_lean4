@@ -11,7 +11,7 @@ Trusting the correctness of compiled Lean programs requires trust in Lean's comp
 
 **NOTE**: Tactics and other metaprograms, even tactics that are compiled, do *not* need to be trusted _at all_; they are untrusted code which is used to produce kernel terms for use by something else. A proposition `P` can be proved in Lean using an arbitrarily complex compiled metaprogram without expanding the trusted code base beyond the kernel, because the metaprogram is required to produce a proof expressed in Lean's kernel language.
 
-+ These statements hold for proofs that are [exported](./export_format.md). To satisfy more ~~pedantic~~ vigilant readers, this does necessarily entail some degree of trust in, for example, the operating system on the computer used to run the exporter and verifier, the hardware, etc.
++ These statements hold for proofs that are [exported](../export_format.md). To satisfy more ~~pedantic~~ vigilant readers, this does necessarily entail some degree of trust in, for example, the operating system on the computer used to run the exporter and verifier, the hardware, etc.
 
 + For proofs that are not exported, users are additionally trusting the elements of Lean outside the kernel (the elaborator, parser, etc.).
 

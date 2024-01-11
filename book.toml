@@ -5,8 +5,5 @@ language = "en"
 multilingual = false
 src = "src"
 
-[build]
-build-dir = "out"
-
 [output.html]
 git-repository-url = "https://github.com/ammkrn/type_checking_in_lean4"

@@ -1,8 +1,5 @@
 # Type Checking in Lean 4
 
-## Foreword
-
-
 [Type Checking in Lean 4](title_page.md)
 [Foreword](foreword.md)
 

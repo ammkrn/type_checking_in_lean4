@@ -15,3 +15,5 @@
 + Conor McBride and James McKinna's paper [_I am not a number: I am a free variable_](http://www.e-pig.org/downloads/notanum.pdf) describing the locally nameless approach to bound/free variables
 
 + Information about non-positive occurrences in inductive types, from _Counterexamples in Type Systems_: https://counterexamples.org/strict-positivity.html?highlight=posi#positivity-strict-and-otherwise
+
++ Freek Wiedijk. Pollack-inconsistency. Electronic Notes in Theoretical Computer Science, 285:85–100, 2012
