@@ -30,4 +30,4 @@ Lean's kernel is small enough that developers can write their own implementation
 
 In addition to the list of items above, external type checkers will also need a parser for [Lean's export format](./export_format.md), and a pretty printer, for input and output respectively. The parser and pretty printer are not part of the kernel, but they are important if one wants to have interesting interactions with the kernel.
 
-[^1]: Writing your own type checker is not an afternoon project, but it is well within the realm of what is achievable for citizen scienctists.
+[^1]: Writing your own type checker is not an afternoon project, but it is well within the realm of what is achievable for citizen scientists.
