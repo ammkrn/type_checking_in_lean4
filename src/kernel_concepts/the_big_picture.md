@@ -8,7 +8,7 @@ To give the reader a road map, the entire procedure of checking an export file c
 
 + For each declaration in the environment, the kernel requires that the declaration is not already declared in the environment, has no duplicate universe parameters, that the declaration's type is actually a type and not a value (that `infer declar.ty` returns an expression `Sort <n>`), and that the declaration's type has no free variables.
 
-+ For definitions, theorems, and opaque declarations, assert that inferring the type of the definition's value yields an expression which is definitionally equal to the type the user assigned to the declaration. This is where the rubber meets the road in terms of asserting that proofs are correct, and for theorems, this is the step that correponds to "the user says this is a proof of `P`, does the value actually constitute a valid proof of `P`".
++ For definitions, theorems, and opaque declarations, assert that inferring the type of the definition's value yields an expression which is definitionally equal to the type the user assigned to the declaration. This is where the rubber meets the road in terms of asserting that proofs are correct, and for theorems, this is the step that corresponds to "the user says this is a proof of `P`, does the value actually constitute a valid proof of `P`".
 
 + For inductive declarations, their constructors, and recursors, check that they are properly formed and comply with the rules of Lean's type theory (more on this later). 
 
