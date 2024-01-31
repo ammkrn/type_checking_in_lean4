@@ -2,7 +2,7 @@
 
 Reduction is about nudging expressions toward their [normal form](https://en.wikipedia.org/wiki/Normal_form_(abstract_rewriting)) so we can determine whether expressions are definitionally equal. For example, we need to perform beta reduction to determine that `(fun x => x) Nat.zero` is definitionally equal to `Nat.zero`, and delta reduction to determine that `id List.nil` is definitionally equal to `List.nil`. 
 
-Reduction in Lean's kernel has two properties that introduce concerns which sometimes go unaddressed in basic texbook treatments of the topic. First, reduction in some cases is interleaved with inference. Among other things, this means reduction may need to be performed with open terms, even though the reduction procedures themselves are not creating free variables. Second, `const` expressions which are applied to multiple arguments may need to be considered together with those arguments during reduction (as in iota reduction), so sequences of applications need to be unfolded together at the beginning of reduction. 
+Reduction in Lean's kernel has two properties that introduce concerns which sometimes go unaddressed in basic textbook treatments of the topic. First, reduction in some cases is interleaved with inference. Among other things, this means reduction may need to be performed with open terms, even though the reduction procedures themselves are not creating free variables. Second, `const` expressions which are applied to multiple arguments may need to be considered together with those arguments during reduction (as in iota reduction), so sequences of applications need to be unfolded together at the beginning of reduction. 
 
 ## Beta reduction 
 
@@ -55,7 +55,7 @@ reduce Let _ val body:
 
 Delta reduction refers to unfolding definitions (and theorems). Delta reduction is done by replacing a `const ..` expr with the referenced declaration's value, after swapping out the declaration's generic universe parameters for the ones that are relevant to the current context. 
 
-If the current environment contains a definition `x` which was declared with universe paramters `u*`and value `v`, then we may delta reduce an expression `Const(x, w*)` by replacing it with `val`, then substituting the universe parameters `u*` for those in `w*`.
+If the current environment contains a definition `x` which was declared with universe parameters `u*`and value `v`, then we may delta reduce an expression `Const(x, w*)` by replacing it with `val`, then substituting the universe parameters `u*` for those in `w*`.
 
 ```
 deltaReduce Const name levels:
@@ -71,7 +71,7 @@ A `proj` expression has a natural number index indicating the field to be projec
 
 Keep in mind that for fully elaborated terms, the arguments to the constructor will include any parameters, so an instance of the `Prod` constructor would be e.g. `Prod.mk A B (a : A) (b : B)`.
 
-The natural number indicating the projected field is 0-based, where 0 is the first *non-paramter* argument to the constructor, since a projection cannot be used to access the structure's parameters.
+The natural number indicating the projected field is 0-based, where 0 is the first *non-parameter* argument to the constructor, since a projection cannot be used to access the structure's parameters.
 
 With this in mind, it becomes clear that once we despine the constructor's arguments into `(constructor, [arg0, .., argN])`, we can reduce the projection by simply taking the argument at position `i + num_params`, where `num_params` is what it sounds like, the number of parameters for the structure type.
 
@@ -182,7 +182,7 @@ To execute the reduction, we need to pull out the argument that is the `f` eleme
 
 Since this is only a reduction step, we rely on the type checking phases done elsewhere to provide assurances that the expression as a whole is well typed.
 
-The type signatures for `Quot.ind` and `Quot.mk` are recreated below, maping the elements of the telescope to what we should find as the arguments. The elements with a `*` are the ones we're interested in for reduction.
+The type signatures for `Quot.ind` and `Quot.mk` are recreated below, mapping the elements of the telescope to what we should find as the arguments. The elements with a `*` are the ones we're interested in for reduction.
 
 ```
 Quotient primitive Quot.ind.{u} : ∀ {α : Sort u} {r : α → α → Prop} 
