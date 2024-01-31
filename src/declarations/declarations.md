@@ -56,7 +56,7 @@ For all declarations, the following preliminary checks are performed before any 
 
 ### Axiom
 
-The only checks done against axioms are those done for all declarations which ensure the `declarationInfo` passes muster. If an axiom has a valid set of univers parameters and a valid type with no free variables, it is admitted to the environment.
+The only checks done against axioms are those done for all declarations which ensure the `declarationInfo` passes muster. If an axiom has a valid set of universe parameters and a valid type with no free variables, it is admitted to the environment.
 
 ### Quot
 

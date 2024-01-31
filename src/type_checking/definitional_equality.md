@@ -2,11 +2,11 @@
 
 Definitional equality is implemented as a function that takes two expressions as input, and returns `true` if the two expressions are definitionally equal within Lean's theory, and `false` if they are not.
 
-Within the kernel, defnitional equality is important simply because it's a necessary part of type checking. Definitional equality is still an important concept for Lean users who do not venture into the kernel, because definitional equalities are comparatively nice to work with in Lean's vernacular; for any `a` and `b` that are definitionally equal, Lean doesn't need any prompting or additional input from the user to determine whether two expressions are equal.
+Within the kernel, definitional equality is important simply because it's a necessary part of type checking. Definitional equality is still an important concept for Lean users who do not venture into the kernel, because definitional equalities are comparatively nice to work with in Lean's vernacular; for any `a` and `b` that are definitionally equal, Lean doesn't need any prompting or additional input from the user to determine whether two expressions are equal.
 
 There are two big-picture parts of implementing the definitional equality procedure. First, the individual tests that are used to check for different definitional equalities. For readers who are just interested in understanding definitional equality from the perspective of an end user, this is probably what you want to know.
 
-Readers interested in writing a type checker should also understand how the individual checks are composed along with reduction and cachine to make the problem tractable; naively running each check and reducing along the way is likely to yield unacceptable performance results.
+Readers interested in writing a type checker should also understand how the individual checks are composed along with reduction and caching to make the problem tractable; naively running each check and reducing along the way is likely to yield unacceptable performance results.
 
 ## Sort equality
 
@@ -113,7 +113,7 @@ Lean recognizes definitional equality of two elements `x: S p_0 .. p_N` and `y: 
 + `S` has only one constructor which takes no arguments other than the parameters of `S`, `p_0 .. p_N`
 + The types `S p_0 .. p_N` and `T p0 .. p_M` are definitionally equal
 
-Intuitively this definitionaly equality is fine, because all of the information that elements of these types can convey is captured by their types, and we're requiring those types to be definitionally equal.
+Intuitively this definitional equality is fine, because all of the information that elements of these types can convey is captured by their types, and we're requiring those types to be definitionally equal.
 
 ## Eta expansion
 
@@ -163,7 +163,7 @@ match X, Y with
 
 The string literal `s` is converted to an application of `Const(String.mk, [])` to a `List Char`. Because Lean's `Char` type is used to represent unicode scalar values, their integer representation is a 32-bit unsigned integer.
 
-To illustrate, the string literal "ok", which uses two characters corresponding to the 32 bit unsigned integers `111` and `107` is conveted to:
+To illustrate, the string literal "ok", which uses two characters corresponding to the 32 bit unsigned integers `111` and `107` is converted to:
 
 >(String.mk (((List.cons Char) (Char.ofNat.[] NatLit(111))) (((List.cons Char) (Char.ofNat NatLit(107))) (List.nil Char))))
 
@@ -173,7 +173,7 @@ The available kernel implementations implement a "lazy delta reduction" procedur
 
 If we have two expressions `a` and `b`, where `a` is an application of a definition with height 10, and `b` is an application of a definition with height 12, the lazy delta procedure takes the more efficient route of unfolding `b` to try and get closer to `a`, as opposed to unfolding both of them completely, or blindly choosing one side to unfold.
 
-If the lazy delta procedure finds two expressions which are an application of a `const` expression to arguments, and the `const` expressions refer to the same declaration, the expressions are checked for congruence (whether they're the same consts applied to definitionally equal arguments). Congruence failures are cached, and for readers writing their own kernel, caching these failures turnes out to be a performance critical optimization, since the congruence check involves a potentially expensive call to `def_eq_args`.
+If the lazy delta procedure finds two expressions which are an application of a `const` expression to arguments, and the `const` expressions refer to the same declaration, the expressions are checked for congruence (whether they're the same consts applied to definitionally equal arguments). Congruence failures are cached, and for readers writing their own kernel, caching these failures turns out to be a performance critical optimization, since the congruence check involves a potentially expensive call to `def_eq_args`.
 
 ## Syntactic equality (also structural or pointer equality)
 

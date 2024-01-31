@@ -77,7 +77,7 @@ Going forward, we may use some form of the term "free variable identifier" to re
 
 The `const` constructor is how an expression refers to another declaration in the environment, it must do so by reference. 
 
-In example below, `def plusOne` creates a `Definition` declaration, which is checked, then admitted to the environment. Declarations cannot be placed directly in expressions, so when the type of `plusOne_eq_succ` invokes the previous delcaration `plusOne`, it must do so by name. An expression is created: `Expr.const (plusOne, [])`, and when the kernel finds this `const` expression, it can look up the declaration referred to by name, `plusOne`, in the environment:
+In example below, `def plusOne` creates a `Definition` declaration, which is checked, then admitted to the environment. Declarations cannot be placed directly in expressions, so when the type of `plusOne_eq_succ` invokes the previous declaration `plusOne`, it must do so by name. An expression is created: `Expr.const (plusOne, [])`, and when the kernel finds this `const` expression, it can look up the declaration referred to by name, `plusOne`, in the environment:
 
 ```
 def plusOne : Nat -> Nat := fun x => x + 1
@@ -85,7 +85,7 @@ def plusOne : Nat -> Nat := fun x => x + 1
 theorem plusOne_eq_succ (n : Nat) : plusOne n = n.succ := rfl 
 ```
 
-Expressions created with the `const` constructor also carry a list of levels which are substituted into any unfolded or inferred declarations taken from the environment by looking up the definition the `const` expression refers to. For example, inferring the type of `const List [Level.param(x)]` involves looking up the declaration for `List` in the current environment, retrieving its type and universe paramters, then substituting `x` for the universe parameter with which `List` was initially declared.
+Expressions created with the `const` constructor also carry a list of levels which are substituted into any unfolded or inferred declarations taken from the environment by looking up the definition the `const` expression refers to. For example, inferring the type of `const List [Level.param(x)]` involves looking up the declaration for `List` in the current environment, retrieving its type and universe parameters, then substituting `x` for the universe parameter with which `List` was initially declared.
 
 
 ### Lambda, Pi

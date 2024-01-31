@@ -38,7 +38,7 @@ The additional assertion needed here is that the type of `arg` matches the type 
 
 `(fun (n : Nat) => 2 * n) 10`, we would need to assert that `defEq(Nat, infer(10))`.
 
-While existing implemtnations prefer to perform this check inline, one could potentially store this equality assertion for processing elsewhere.
+While existing implementations prefer to perform this check inline, one could potentially store this equality assertion for processing elsewhere.
 
 ## Lambda
 
@@ -75,7 +75,7 @@ infer Sort level:
 
 ## Const
 
-`const` expressions are used to refer to other declarations by name, and any other declaration referred to must have been previously declared and had its type checked. Since we therefore already know what the type of the referred to declaration is, we can just look it up in the environment. We do have to substitute in the current declaration's universe levels for the indexed defintion's universe parameters however.
+`const` expressions are used to refer to other declarations by name, and any other declaration referred to must have been previously declared and had its type checked. Since we therefore already know what the type of the referred to declaration is, we can just look it up in the environment. We do have to substitute in the current declaration's universe levels for the indexed definition's universe parameters however.
 
 ```
 infer Const name levels:
