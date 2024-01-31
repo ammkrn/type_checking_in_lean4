@@ -1,6 +1,6 @@
 # What is the kernel?
 
-The kernel is an implementation of Lean's logic in software; a computer program with the minimum amount of machinery required to construct elements of Lean's logical langauge and check those elements for correctness. The major components are:
+The kernel is an implementation of Lean's logic in software; a computer program with the minimum amount of machinery required to construct elements of Lean's logical language and check those elements for correctness. The major components are:
 
 + A sort of names used for addressing.
 
