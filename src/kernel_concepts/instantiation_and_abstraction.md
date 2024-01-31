@@ -1,6 +1,6 @@
 # Instantiation and abstraction
 
-Instantiation refers to substitution of bound variables for the appropriate arguments. Abstraction refers to replacement of free variables with the appropriate bound varible when replacing binders. Lean's kernel uses deBruijn indices for bound variables and unique identifiers for free variables.
+Instantiation refers to substitution of bound variables for the appropriate arguments. Abstraction refers to replacement of free variables with the appropriate bound variable when replacing binders. Lean's kernel uses deBruijn indices for bound variables and unique identifiers for free variables.
 
 For our purposes, a free variable is a variable in an expression that refers to a binder which has been "opened", and is no longer immediately available to us, so we replace the corresponding bound variable with a free variable that has some information about the binder we're leaving behind.
 
