@@ -24,7 +24,7 @@ betaReduceAux f args:
   | _, _ => foldApps f args
 ```
 
-An important performance optimization for the instantiation (substitution) component of beta reduction is what's sometimes referred to as "generalized beta reduction", which involves gathering the arguments that have a corresponding lambda and substituting them in all at once. This optimization means that for `n` sequential lambda expressions with applied arguments, we only perform one traveral of the expression to substitute the appropriate arguments, instead of `n` traversals.
+An important performance optimization for the instantiation (substitution) component of beta reduction is what's sometimes referred to as "generalized beta reduction", which involves gathering the arguments that have a corresponding lambda and substituting them in all at once. This optimization means that for `n` sequential lambda expressions with applied arguments, we only perform one traversal of the expression to substitute the appropriate arguments, instead of `n` traversals.
 
 ```
 betaReduce e:
