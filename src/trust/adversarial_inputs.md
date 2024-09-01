@@ -9,6 +9,6 @@ However, a minimal type checker will not actively protect against inputs which p
 The idea that "a user might think a theorem has been formally proved, while in fact he or she
 is misled about what it is that the system has actually done" is addressed by the idea of Pollack consistency and is explored in this publication[^pollack] by Freek Wiedijk. 
 
-Note that there is nothing in principle preventing developers from writing software or extending a type checker to provide protection against such attacks, it's just not captured by the minimal functionality required by the kernel. However, the extent to which Lean's users have embraced its powerful custom syntax and macro systems may pose some challenges for those interested in improving the story here. Readers should consider this somewhat of an [open issue for future work](./future_work.md#improving-pollack-consistency)
+Note that there is nothing in principle preventing developers from writing software or extending a type checker to provide protection against such attacks, it's just not captured by the minimal functionality required by the kernel. However, the extent to which Lean's users have embraced its powerful custom syntax and macro systems may pose some challenges for those interested in improving the story here. Readers should consider this somewhat of an [open issue for future work](../future_work.md#improving-pollack-consistency)
 
 [^pollack]: Freek Wiedijk. Pollack-inconsistency. Electronic Notes in Theoretical Computer Science, 285:85–100, 2012
