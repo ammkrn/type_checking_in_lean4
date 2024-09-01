@@ -15,7 +15,7 @@ Trusting the correctness of compiled Lean programs requires trust in Lean's comp
 
 + For proofs that are not exported, users are additionally trusting the elements of Lean outside the kernel (the elaborator, parser, etc.).
 
-## An more itemized list
+## A more itemized list
 
 A more itemized description of the trust involved in Lean 4 comes from a post by Mario Carneiro on the Lean Zulip. 
 
