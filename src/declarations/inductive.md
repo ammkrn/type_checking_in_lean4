@@ -67,4 +67,4 @@ Then recovering the original inductive declaration in the process of checking th
 
 ### Recursors
 
-TBD
+For now, see [iota reduction in the section on reduction](../type_checking/reduction.md#iota-reduction-pattern-matching)

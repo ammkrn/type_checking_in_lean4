@@ -143,7 +143,7 @@ fun
   (motive : (List.{u} α) -> Sort.{u_1}) 
   (nilCase : motive (List.nil.{u} α)) 
   (consCase : forall (head : α) (tail : List.{u} α), (motive tail) -> (motive (List.cons.{u} α head tail))) => 
-  nil
+  nilCase
 ```
 
 ## List.cons rec rule
@@ -176,7 +176,7 @@ Getting to the nuts and bolts, if we neglected to look for and apply k-like redu
 
 `Quot` introduces two special cases which need to be handled by the kernel, one for `Quot.ind`, and one for `Quot.lift`.
 
-Both `Quot.ind` and `Quot.lift` deal with application of a function `f` to an argument `(a : α)`, where the `a` is a component of some `Quot r`, formed with `Quot.mk .. a`. 
+Both `Quot.ind` and `Quot.lift` deal with application of a function `f` to an argument `(a : α)`, where the `a` is a component of some `Quot r`, formed with `Quot.mk r a`. 
 
 To execute the reduction, we need to pull out the argument that is the `f` element and the argument that is the `Quot` where we can find `(a : α)`, then apply the function `f` to `a`. Finally, we reapply any arguments that were part of some outer expression not related to the invocation of `Quot.ind` or `Quot.lift`.
 

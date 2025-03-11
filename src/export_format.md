@@ -4,7 +4,12 @@ An exporter is a program which emits Lean declarations using the kernel language
 
 The official exporter is [lean4export](https://github.com/leanprover/lean4export).
 
-A description of the current export file format can be found below. There are also [ongoing discussions](https://github.com/leanprover/lean4export/issues/3) about how best to evolve the export format.
+
+The master branch of the official exporter uses the same base format as lean 3 [here](https://github.com/leanprover/lean3/blob/master/doc/export_format.md), with the addition of the new-to-lean4 items, which are projections, literals, and explicitly support for let expressions. The new stuff is outlined in the lean4export readme.
+
+A slightly modified version of the export format supported by [this fork](https://github.com/ammkrn/lean4export/tree/format2024) of lean4export is described below. These modifications export reducibility hints, quotient declarations, recursors, and iota reduction rules (rec rules). These additional exports were added to give more flexibility in implementation and for performance, but they also allow for the development of more minimized software used for experimentation, and can make bootstrapping and testing a checker easier for developers.
+
+There are also [ongoing discussions](https://github.com/leanprover/lean4export/issues/3) about how best to evolve the export format.
 
 ## (ver 0.1.2)
 
@@ -66,7 +71,7 @@ RecRule ::= ridx "#RR" (ctorName : nidx) (nFields : nat) (val : eidx)
 
 Axiom ::= "#AX" (name : nidx) (type : eidx) (uparams : uidx*)
 
-Def ::= "#DEF" (name : nidx) (type : eidx) (value : eidx) (hint : Hint)? (uparams : uidx*)
+Def ::= "#DEF" (name : nidx) (type : eidx) (value : eidx) (hint : Hint) (uparams : uidx*)
   
 Theorem ::= "#THM" (name : nidx) (type : eidx) (value : eidx) (uparams: uidx*)
 
