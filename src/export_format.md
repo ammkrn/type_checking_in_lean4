@@ -69,13 +69,13 @@ Hint ::= "O" | "A" | "R" nat
 
 RecRule ::= ridx "#RR" (ctorName : nidx) (nFields : nat) (val : eidx)
 
-Axiom ::= "#AX" (name : nidx) (type : eidx) (uparams : uidx*)
+Axiom ::= "#AX" (name : nidx) (type : eidx) (uparams : nidx*)
 
-Def ::= "#DEF" (name : nidx) (type : eidx) (value : eidx) (hint : Hint) (uparams : uidx*)
+Def ::= "#DEF" (name : nidx) (type : eidx) (value : eidx) (hint : Hint) (uparams : nidx*)
   
-Theorem ::= "#THM" (name : nidx) (type : eidx) (value : eidx) (uparams: uidx*)
+Theorem ::= "#THM" (name : nidx) (type : eidx) (value : eidx) (uparams: nidx*)
 
-Quotient ::= "#QUOT" (name : nidx) (type : eidx) (uparams : uidx*)
+Quotient ::= "#QUOT" (name : nidx) (type : eidx) (uparams : nidx*)
 
 Inductive ::= 
   "#IND"
@@ -89,7 +89,7 @@ Inductive ::=
   (inductiveNames: nidx {numInductives})
   (numConstructors : nat) 
   (constructorNames : nidx {numConstructors}) 
-  (uparams: uidx*)
+  (uparams: nidx*)
 
 Constructor ::= 
   "#CTOR"
@@ -99,7 +99,7 @@ Constructor ::=
   (constructorIndex : nat)
   (numParams : nat)
   (numFields : nat)
-  (uparams: uidx*)
+  (uparams: nidx*)
 
 Recursor ::= 
   "#REC"
@@ -114,5 +114,5 @@ Recursor ::=
   (numRules : nat)
   (recRules : ridx {numRules})
   (k : 1 | 0)
-  (uparams : uidx*)
+  (uparams : nidx*)
 ```
