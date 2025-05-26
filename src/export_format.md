@@ -56,7 +56,7 @@ Expr ::=
   | eidx "#EA"  eidx eidx
   | eidx "#EL"  Info nidx eidx eidx
   | eidx "#EP"  Info nidx eidx eidx
-  | eidx "#EZ"  Info nidx eidx eidx eidx
+  | eidx "#EZ"  nidx eidx eidx eidx
   | eidx "#EJ"  nidx nat eidx
   | eidx "#ELN" nat
   | eidx "#ELS" (hexhex)*
@@ -72,7 +72,9 @@ RecRule ::= ridx "#RR" (ctorName : nidx) (nFields : nat) (val : eidx)
 Axiom ::= "#AX" (name : nidx) (type : eidx) (uparams : nidx*)
 
 Def ::= "#DEF" (name : nidx) (type : eidx) (value : eidx) (hint : Hint) (uparams : nidx*)
-  
+
+Opaq ::= "#OPAQ" (name : nidx) (type : eidx) (value : eidx) (uparams : nidx*)
+
 Theorem ::= "#THM" (name : nidx) (type : eidx) (value : eidx) (uparams: nidx*)
 
 Quotient ::= "#QUOT" (name : nidx) (type : eidx) (uparams : nidx*)
