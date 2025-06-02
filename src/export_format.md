@@ -83,8 +83,9 @@ Inductive ::=
   "#IND"
   (name : nidx) 
   (type : eidx) 
+  (isReflexive: 0 | 1)
   (isRecursive: 0 | 1)
-  (isNested : 0 | 1)
+  (numNested : nat)
   (numParams: nat) 
   (numIndices: nat)
   (numInductives: nat)
