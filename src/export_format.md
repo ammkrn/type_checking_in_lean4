@@ -11,7 +11,7 @@ A slightly modified version of the export format supported by [this fork](https:
 
 There are also [ongoing discussions](https://github.com/leanprover/lean4export/issues/3) about how best to evolve the export format.
 
-## (ver 0.1.2)
+## (ver 2.0.0)
 
 For clarity, some of the compound items are decorated here with a name, for example `(name : T)`, but they appear in the export file as just an element of `T`.
 
