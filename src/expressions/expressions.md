@@ -140,7 +140,7 @@ An exceedingly common kernel operation for manipulating expressions is folding a
 
 ### Projections
 
-The `proj` constructor represents structure projections. Inductive types that are not recursive, have only one constructor, and have no indices can be structures.
+The `proj` constructor represents structure projections. Inductive types that have only one constructor and have no indices can be structures.
 
 The constructor takes a name, which is the name of the type, a natural number indicating the field being projected, and the actual structure the projection is being applied to.
 
