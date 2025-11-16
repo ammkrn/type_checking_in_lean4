@@ -6,7 +6,11 @@ Within the kernel, definitional equality is important simply because it's a nece
 
 There are two big-picture parts of implementing the definitional equality procedure. First, the individual tests that are used to check for different definitional equalities. For readers who are just interested in understanding definitional equality from the perspective of an end user, this is probably what you want to know.
 
-Readers interested in writing a type checker should also understand how the individual checks are composed along with reduction and caching to make the problem tractable; naively running each check and reducing along the way is likely to yield unacceptable performance results.
+**Readers interested in writing a type checker** should also understand how the individual checks are composed along with reduction and caching to make the problem tractable; naively running each check and reducing along the way is likely to yield unacceptable performance results. For this, we recommend referencing one of the existing kernel implementations. **The order and manner in which these checks are performed has a significant effect on performance**; while larger Lean projects like Mathlib may try to maintain some discipline about use and abuse of reduction and equality checking in the Kernel, code will inevitably be committed which relies on certain execution paths in the kernel being fast or in some way advantageous as implemented by C++ kernel, such that trying to check these code bases with alternate or more naive strategies is likely to cause performance problems.
+
+## Syntactic equality (also structural or pointer equality)
+
+Two expressions are definitionally equal if they refer to exactly the same implementing object, as long as the type checker ensures that two objects are equal if and only if they are constructed from the same components (where the relevant constructors are those for Name, Level, and Expr).
 
 ## Sort equality
 
@@ -145,16 +149,31 @@ If `p` is a proof of type `A` and `q` is a proof of type `B`, then if `A` is def
 
 ## Natural numbers (nat literals)
 
-Two nat literals are definitionally equal if they can be reduced to `Nat.zero`, or they can be reduced as (`Nat.succ x`, `Nat.succ y`), where `x` and `y` are definitionally equal.
+Two nat literals are definitionally equal if they can be reduced to `Nat.zero` and/or `NatLit 0`, or if they can be reduced as `Nat.succ x` (or `NatLit x+1`) and `Nat.succ y` (or `NatLit y+1`), where `x` and `y` are definitionally equal. 
+
+We expect most implementations to consider identical nat literals syntactically equal. That is, the implementing language will consider `NatLit n` and `Natlit m` to be natively equal when the values of `n` and `m` are equal.
+
+In practice, this check will only be performed after syntactic equality has been tested, and each recursive call to `defEq` in the successor case should begin with a syntactic equality check.
 
 ```
-match X, Y with
-| Nat.zero, Nat.zero => true
-| NatLit 0, NatLit 0 => true
-| Nat.succ x, NatLit (y+1) => defEq x (NatLit y)
-| NatLit (x+1), Nat.succ y => defEq (NatLit x) y
-| NatLit (x+1), NatLit (y+1) => x == y
-| _, _ => false
+def isNatZero n:
+  match n with
+  | Nat.zero | NatLit 0 => true
+  | _ => false
+  
+def isNatSuccOf n:
+  match n with
+  | .app Nat.succ n' => some n'
+  | NatLit n+1 => some (NatLit n) 
+  | _ => none
+
+def defEqNatLit a b:
+  if isNatZero a && isNatZero b
+  then some true
+  else 
+    match isNatSuccOf a, isNatSuccOf b with
+    | some a', some b' => some (defEq a' b') 
+    | _, _ => none
 ```
 
 ## String literal
@@ -175,6 +194,3 @@ If we have two expressions `a` and `b`, where `a` is an application of a definit
 
 If the lazy delta procedure finds two expressions which are an application of a `const` expression to arguments, and the `const` expressions refer to the same declaration, the expressions are checked for congruence (whether they're the same consts applied to definitionally equal arguments). Congruence failures are cached, and for readers writing their own kernel, caching these failures turns out to be a performance critical optimization, since the congruence check involves a potentially expensive call to `def_eq_args`.
 
-## Syntactic equality (also structural or pointer equality)
-
-Two expressions are definitionally equal if they refer to exactly the same implementing object, as long as the type checker ensures that two objects are equal if and only if they are constructed from the same components (where the relevant constructors are those for Name, Level, and Expr).
