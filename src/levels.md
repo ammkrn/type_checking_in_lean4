@@ -35,9 +35,9 @@ Lean's `Level` type is equipped with a partial order, meaning there's a "less th
     (Param(_) | Zero), Max(a, b) => (leq l1 a balance) || (leq l1 b balance)
 
     -- imax
-    IMax(a1, b1), IMax(a2, b2) if a1 == a2 && b1 == b2 => true
     IMax(_, p @ Param(_)), _ => cases(p)
     _, IMax(_, p @ Param(_)) => cases(p)
+    IMax(a1, b1), IMax(a2, b2) if a1 == a2 && b1 == b2 && balance >= 0 => true
     IMax(a, IMax(b, c)), _ => leq Max(IMax(a, c), IMax(b, c)) l2 balance
     IMax(a, Max(b, c)), _ => leq (simplify Max(IMax(a, b), IMax(a, c))) l2 balance
     _, IMax(a, IMax(b, c)) => leq l1 Max(IMax(a, c), IMax(b, c)) balance
