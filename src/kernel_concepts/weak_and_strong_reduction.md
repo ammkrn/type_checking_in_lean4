@@ -1,14 +1,14 @@
 # Weak and strong reduction
 
-The implementation details of Lean's reduction strategies is discussed in [another chapter](../type_checking/reduction.md); this section is specifically to clarify the difference between the general concepts of weak and strong reduction.
+The implementation details of Lean's reduction strategies are discussed in [another chapter](../type_checking/reduction.md); this section is specifically about the difference between weak and strong reduction.
 
 ## Weak reduction
 
-Weak reduction refers to reduction that stops at binders which do not have an argument applied to them. By binders, we mean lambda, pi, and let expressions.
+Weak reduction refers to reduction that stops at binders which do not have an argument applied to them. By binders, we mean lambda, pi, and let expressions (though in this context we can just focus on lambdas).
 
-For example, weak reduction can reduce `(fun (x y : Nat) => y + x) (0 : Nat)` to `(fun (y : Nat) => y + 0)`, but can do no further reduction.
+For example, weak reduction can reduce `(fun (x y : Nat) => y + x) (0 : Nat)` to `(fun (y : Nat) => y + 0)`, but can do no further (weak) reduction.
 
-When we say or 'weak head normal form reduction', or just reduction without specifically identifying it as 'strong', we're talking about weak reduction. Strong reduction just happens as a byproduct of applying weak reduction after we've opened a binder somewhere else. 
+When we say or 'weak head normal form reduction', or just 'reduction' without specifically identifying it as 'strong', we're talking about weak reduction. Strong reduction just happens as a byproduct of applying weak reduction after we've opened a binder somewhere else. 
 
 ## Strong reduction
 

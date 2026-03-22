@@ -11,7 +11,7 @@
 
 The reason why `Type <N>` and `Prop` are sometimes used instead of always adhering to `Sort n` is that elements of `Type <N>` have certain important qualities and behaviors that are not observed by those of `Prop` and vice versa.
 
-Example: elements of `Prop` can be considered for definitional proof irrelevance, while elements of `Type _` can use large elimination without needing to satisfy other tests.
+Example: Only elements of `Prop` can be considered for definitional proof irrelevance, while only elements of `Type _` can use large elimination without needing to satisfy other tests.
 
 
 ## Level/universe and Sort
